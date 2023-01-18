@@ -100,7 +100,10 @@ function copyHandle() {
   if (navigator.clipboard) {
     // clipboard api 复制
     navigator.clipboard.writeText(text);
-    ElAlert({title:'复制成功'})
+    ElMessage({
+      type:'success',
+      message:'复制成功'
+    },appContext)
   } else {
     var textarea = document.createElement('textarea');
     document.body.appendChild(textarea);
