@@ -36,7 +36,7 @@
 <script setup>
 import { js_beautify, css_beautify, html_beautify } from 'js-beautify'
 import { ref, reactive } from 'vue'
-let radio = ref('4')
+let radio = ref('1')
 let data = reactive({
   label: [],
   value: [],
