@@ -1,24 +1,32 @@
 <template>
   <div class="m-auto contents mx-auto w-screen-lg">
-    <el-card>
-      <el-radio-group v-model="radio" @change="change">
-        <el-radio value="1" label="1">生成数组</el-radio>
-        <el-radio value="2" label="2">生成list</el-radio>
-        <el-radio value="3" label="3">合成json</el-radio>
-        <el-radio value="4" label="4">生成json</el-radio>
-      </el-radio-group>
-    </el-card>
+
+    <div>
+      <el-card>
+        <div class="flex">
+          <div class="flex-1 flex-auto">
+            <el-radio-group v-model="radio" @change="change">
+              <el-radio value="1" label="1">生成数组</el-radio>
+              <el-radio value="2" label="2">生成list</el-radio>
+              <el-radio value="3" label="3">合成json</el-radio>
+              <el-radio value="4" label="4">生成json</el-radio>
+            </el-radio-group>
+          </div>
+          <a class="text-blue-500" href="https://web.baimiaoapp.com/" target="_blank">白描（截图识别文字）</a>
+        </div>
+      </el-card>
+    </div>
 
     <div>
       <el-form label-position="top" :inline="true" class="grid grid-cols-3 gap-2 m-5">
         <el-form-item label="label">
-          <textarea  @blur="submit" @input="submit" class="outline-gray-500 bg-zinc-100 col-span-1" ring v-model="data.label" name="" id="" cols="30"
-            rows="10" placeholder="label">
+          <textarea @blur="submit" @input="submit" class="outline-gray-500 bg-zinc-100 col-span-1" ring
+            v-model="data.label" name="" id="" cols="30" rows="10" placeholder="label">
               </textarea>
         </el-form-item>
         <el-form-item label="value" v-show="radio == 3">
-          <textarea @blur="submit" @input="submit" class="outline-gray-500 bg-zinc-100 col-span-1" ring name="" v-model="data.value" id="" cols="30"
-            rows="10" placeholder="value"></textarea>
+          <textarea @blur="submit" @input="submit" class="outline-gray-500 bg-zinc-100 col-span-1" ring name=""
+            v-model="data.value" id="" cols="30" rows="10" placeholder="value"></textarea>
         </el-form-item>
         <el-form-item label="结果(点击复制)" class="cursor-pointer" @click="copyHandle">
           <pre class="bg-zinc-100 p-4">
@@ -35,8 +43,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, reactive,getCurrentInstance } from 'vue'
-import {ElMessage} from 'element-plus'
+import { ref, reactive, getCurrentInstance } from 'vue'
+import { ElMessage } from 'element-plus'
 const { appContext } = getCurrentInstance()!
 let radio = ref('1')
 let data = reactive({
@@ -101,9 +109,9 @@ function copyHandle() {
     // clipboard api 复制
     navigator.clipboard.writeText(text);
     ElMessage({
-      type:'success',
-      message:'复制成功'
-    },appContext)
+      type: 'success',
+      message: '复制成功'
+    }, appContext)
   } else {
     var textarea = document.createElement('textarea');
     document.body.appendChild(textarea);
@@ -120,9 +128,9 @@ function copyHandle() {
     // 移除输入框
     document.body.removeChild(textarea);
     ElMessage({
-      type:'success',
-      message:'复制成功'
-    },appContext)
+      type: 'success',
+      message: '复制成功'
+    }, appContext)
 
   }
 
