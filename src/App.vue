@@ -1,6 +1,5 @@
 <template>
-  <div class="m-auto contents mx-auto w-screen-lg">
-
+  <div class="container mx-auto w-screen-lg">
     <div>
       <el-card>
         <div class="flex">
@@ -12,12 +11,32 @@
               <el-radio value="4" label="4">生成json</el-radio>
             </el-radio-group>
           </div>
-          <a class="text-blue-500" href="https://web.baimiaoapp.com/" target="_blank">白描（截图识别文字）</a>
+          <a class="text-red-500" href="https://web.baimiaoapp.com/" target="_blank">白描（截图识别文字）</a>
         </div>
       </el-card>
     </div>
 
-    <div>
+    <div class="grid grid-cols-3 gap-10 py-10">
+
+      <div class="cursor-pointer">
+        <h2 class="text-blue-500">label</h2>
+        <textarea @blur="submit" @input="submit" class="outline-gray-500 bg-zinc-100 col-span-1 h-500px w-full" ring
+          v-model="data.label" name="" id="" placeholder="label">
+              </textarea>
+      </div>
+      <div class="cursor-pointer" v-show="radio == 3">
+        <h2 class="text-blue-500">value</h2>
+        <textarea @blur="submit" @input="submit" class="outline-gray-500 bg-zinc-100 col-span-1 h-500px w-full" ring name=""
+          v-model="data.value" id="" placeholder="value"></textarea>
+      </div>
+      <div class="cursor-pointer" @click="copyHandle">
+        <h2 class="text-fuchsia-500">复制</h2>
+        <pre class="bg-zinc-100 p-4 h-500px" style="overflow-y:auto;">
+{{ (preData) }}
+         </pre>
+      </div>
+
+      <!-- 
       <el-form label-position="top" :inline="true" class="grid grid-cols-3 gap-2 m-5">
         <el-form-item label="label">
           <textarea @blur="submit" @input="submit" class="outline-gray-500 bg-zinc-100 col-span-1" ring
@@ -33,7 +52,7 @@
 {{ (preData) }}
          </pre>
         </el-form-item>
-      </el-form>
+      </el-form> -->
     </div>
 
     <!-- <div>
@@ -105,6 +124,7 @@ function change(e) {
 
 function copyHandle() {
   var text = preData.value
+      text = JSON.stringify(text)
   if (navigator.clipboard) {
     // clipboard api 复制
     navigator.clipboard.writeText(text);
