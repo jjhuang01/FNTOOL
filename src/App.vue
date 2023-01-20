@@ -62,6 +62,10 @@
       </div>
     </div>
   </div>
+  <div class="text-gray-400 text-xs text-center">
+    <p>本站不会存储任何数据，请放心使用</p>
+    <p>微信：jjh644 &nbsp;&nbsp;&nbsp;&nbsp; Email：524255440@qq.com </p>
+  </div>
 </template>
 <script setup lang="ts">
 import { ref, reactive, getCurrentInstance, onMounted } from "vue";
